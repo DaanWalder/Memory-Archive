@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Archive</title>
+<meta name="theme-color" content="#f1f0eb">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%225%22 fill=%22%23254fff%22/%3E%3C/svg%3E">
+<script>(function(h){if(!matchMedia('(prefers-reduced-motion: reduce)').matches)h.classList.add('motion')})(document.documentElement)</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="shell">
+  <aside class="side" id="side" aria-label="Archive">
+    <div class="side-top">
+      <a class="name" href="#/all">Memory Archive</a>
+      <button class="side-close action" type="button" data-side-close><span>Close</span></button>
+    </div>
+
+    <div class="side-new">
+      <button class="new-btn" type="button" id="new-btn" aria-haspopup="true" aria-expanded="false"><span class="dot" aria-hidden="true"></span>New entry<kbd>N</kbd></button>
+      <div class="new-menu" id="new-menu" hidden>
+        <a href="#/new/note"><span class="g">¶</span><span><b>Note</b><small>Your own writing, in Markdown</small></span></a>
+        <a href="#/new/find"><span class="g">↘</span><span><b>Find</b><small>An image, link, quote or file</small></span></a>
+        <a href="#/new/work"><span class="g">◆</span><span><b>Work</b><small>A piece you made</small></span></a>
+      </div>
+    </div>
+
+    <label class="side-search"><span class="visually-hidden">Search</span><input id="search" type="search" placeholder="Search" autocomplete="off"><kbd>/</kbd></label>
+
+    <nav class="side-nav" id="side-nav" aria-label="Archive sections"></nav>
+
+    <div class="side-foot">
+      <span class="label">Saved in this browser</span>
+      <div class="side-foot-links">
+        <button class="label link-quiet" id="export">Export</button>
+        <label class="label link-quiet">Import<input id="import" type="file" accept="application/json" hidden></label>
+        <button class="label link-quiet" id="clear-examples">Remove examples</button>
+      </div>
+    </div>
+  </aside>
+  <div class="side-scrim" data-side-close></div>
+
+  <div class="main-col">
+    <header class="bar">
+      <button class="menu-btn action" type="button" id="menu-btn" aria-controls="side"><span>Menu</span></button>
+      <nav class="crumbs label" id="crumbs" aria-label="Breadcrumb"></nav>
+      <div class="bar-tools" id="bar-tools"></div>
+    </header>
+    <main id="main" class="main" tabindex="-1"></main>
+  </div>
+</div>
+
+<div class="dropzone" id="dropzone"><span class="label"><span class="dot"></span>Release to add as a find</span></div>
+<div class="toast label" id="toast" role="status"></div>
+<div class="preview" id="preview"></div>
+<div class="preview-dot" id="preview-dot"></div>
+
+<script src="vendor/marked.umd.js"></script>
+<script src="vendor/purify.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
