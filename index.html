@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memory Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <h1>Memory Archive</h1>
+      <p class="tagline">what inspires, informs and triggers me</p>
+    </div>
+
+    <nav class="lenses" aria-label="Lenses">
+      <button data-view="stream" class="active" title="Everything in the order you encountered it">Stream</button>
+      <button data-view="wall" title="A visual pin-up wall">Wall</button>
+      <button data-view="constellation" title="Everything as a web of connections">Constellation</button>
+      <button data-view="lineage" title="Trace what shaped a piece of work">Lineage</button>
+    </nav>
+
+    <div class="actions">
+      <button id="drift" class="ghost" title="Surface a random forgotten item">Drift</button>
+      <button id="add" class="primary">+ Capture</button>
+      <details class="menu">
+        <summary class="ghost" aria-label="More">⋯</summary>
+        <div class="menu-body">
+          <button id="export">Export archive (.json)</button>
+          <label class="file-btn">Import archive<input id="import" type="file" accept="application/json" hidden></label>
+          <button id="clear-examples">Remove example items</button>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <section class="filters">
+    <input id="search" type="search" placeholder="Search titles, notes, tags…" aria-label="Search">
+    <div class="resonance-filter" role="group" aria-label="Filter by resonance">
+      <button data-res="" class="active">All</button>
+      <button data-res="inspires">Inspires</button>
+      <button data-res="informs">Informs</button>
+      <button data-res="triggers">Triggers</button>
+    </div>
+    <div id="tags" class="tags"></div>
+  </section>
+
+  <main id="view" class="view"></main>
+
+  <aside id="drawer" class="drawer" aria-hidden="true"></aside>
+
+  <dialog id="capture">
+    <form id="capture-form" method="dialog">
+      <h2 id="capture-title">Capture</h2>
+      <fieldset class="types" id="type-picker"></fieldset>
+      <label>Title<input name="title" required autocomplete="off"></label>
+      <label>Note <span class="hint">what is it, and why does it matter to you?</span><textarea name="body" rows="4"></textarea></label>
+      <label class="for-url">Link<input name="url" type="url" placeholder="https://"></label>
+      <label class="for-media">Image or file<input name="media" type="file"></label>
+      <div class="row">
+        <label>When did it enter your life?<input name="date" type="date"></label>
+        <label>It…
+          <select name="resonance">
+            <option value="inspires">inspires me</option>
+            <option value="informs">informs me</option>
+            <option value="triggers">triggers me</option>
+          </select>
+        </label>
+      </div>
+      <label>Tags <span class="hint">comma separated</span><input name="tags" autocomplete="off"></label>
+      <div class="dialog-actions">
+        <button type="button" class="ghost" id="capture-cancel">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="dropzone" class="dropzone">Drop to add to the archive</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
