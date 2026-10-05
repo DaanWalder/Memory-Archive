@@ -1,85 +1,98 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Memory Archive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Archive · Daan Walder</title>
+<meta name="theme-color" content="#f1f0eb">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%225%22 fill=%22%23254fff%22/%3E%3C/svg%3E">
+<script>(function(h){if(!matchMedia('(prefers-reduced-motion: reduce)').matches)h.classList.add('motion')})(document.documentElement)</script>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="top">
-    <div class="brand">
-      <h1>Memory Archive</h1>
-      <p class="tagline">what inspires, informs and triggers me</p>
-    </div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-    <nav class="lenses" aria-label="Lenses">
-      <button data-view="stream" class="active" title="Everything in the order you encountered it">Stream</button>
-      <button data-view="wall" title="A visual pin-up wall">Wall</button>
-      <button data-view="constellation" title="Everything as a web of connections">Constellation</button>
-      <button data-view="lineage" title="Trace what shaped a piece of work">Lineage</button>
-    </nav>
+<header class="site-header">
+  <a class="name" href="#" data-home>Memory Archive</a>
+  <span class="live"><span class="dot" aria-hidden="true"></span><span class="label" id="status">Receiving</span></span>
+  <nav class="nav" aria-label="Lenses">
+    <a href="#index" data-view="index"><span>Index</span></a>
+    <a href="#wall" data-view="wall"><span>Wall</span></a>
+    <a href="#constellation" data-view="constellation"><span>Constellation</span></a>
+    <a href="#lineage" data-view="lineage"><span>Lineage</span></a>
+  </nav>
+</header>
 
-    <div class="actions">
-      <button id="drift" class="ghost" title="Surface a random forgotten item">Drift</button>
-      <button id="add" class="primary">+ Capture</button>
-      <details class="menu">
-        <summary class="ghost" aria-label="More">⋯</summary>
-        <div class="menu-body">
-          <button id="export">Export archive (.json)</button>
-          <label class="file-btn">Import archive<input id="import" type="file" accept="application/json" hidden></label>
-          <button id="clear-examples">Remove example items</button>
-        </div>
-      </details>
-    </div>
-  </header>
-
-  <section class="filters">
-    <input id="search" type="search" placeholder="Search titles, notes, tags…" aria-label="Search">
-    <div class="resonance-filter" role="group" aria-label="Filter by resonance">
-      <button data-res="" class="active">All</button>
-      <button data-res="inspires">Inspires</button>
-      <button data-res="informs">Informs</button>
-      <button data-res="triggers">Triggers</button>
-    </div>
-    <div id="tags" class="tags"></div>
+<main id="main">
+  <section class="wrap page-title">
+    <h1 class="huge" id="lens-title">Index</h1>
+    <p id="lens-note"></p>
   </section>
 
-  <main id="view" class="view"></main>
+  <section class="wrap toolbar" aria-label="Filters">
+    <div class="group" role="group" aria-label="Resonance" id="res-filter"></div>
+    <div class="group tools">
+      <label class="search"><span class="visually-hidden">Search</span><input id="search" type="search" placeholder="Search" autocomplete="off"><kbd>/</kbd></label>
+      <button class="action" id="tags-toggle" aria-expanded="false" aria-controls="tag-panel"><span>Tags</span></button>
+      <button class="action" id="drift" title="Surface something you haven't looked at in a while"><span>Drift</span></button>
+      <button class="action action--signal" id="add"><span class="dot" aria-hidden="true"></span><span>Capture</span></button>
+    </div>
+  </section>
+  <section class="wrap tag-panel" id="tag-panel" hidden></section>
 
-  <aside id="drawer" class="drawer" aria-hidden="true"></aside>
+  <section id="view" class="view" aria-live="polite"></section>
+</main>
 
-  <dialog id="capture">
-    <form id="capture-form" method="dialog">
-      <h2 id="capture-title">Capture</h2>
-      <fieldset class="types" id="type-picker"></fieldset>
-      <label>Title<input name="title" required autocomplete="off"></label>
-      <label>Note <span class="hint">what is it, and why does it matter to you?</span><textarea name="body" rows="4"></textarea></label>
-      <label class="for-url">Link<input name="url" type="url" placeholder="https://"></label>
-      <label class="for-media">Image or file<input name="media" type="file"></label>
-      <div class="row">
-        <label>When did it enter your life?<input name="date" type="date"></label>
-        <label>It…
-          <select name="resonance">
-            <option value="inspires">inspires me</option>
-            <option value="informs">informs me</option>
-            <option value="triggers">triggers me</option>
-          </select>
-        </label>
+<footer class="wrap site-foot">
+  <span class="label">Stored in this browser only</span>
+  <div class="group">
+    <button class="label link-quiet" id="export">Export .json</button>
+    <label class="label link-quiet">Import<input id="import" type="file" accept="application/json" hidden></label>
+    <button class="label link-quiet" id="clear-examples">Remove examples</button>
+  </div>
+  <span class="label keys">N new · / search · 1–4 lenses · ← → browse</span>
+</footer>
+
+<!-- Entry panel -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="panel" aria-label="Entry" inert></aside>
+
+<!-- Capture sheet -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" inert>
+  <div class="sheet-top wrap">
+    <span class="name" id="sheet-title">New entry</span>
+    <span class="label sheet-hint">Paste a link or image anywhere to start one</span>
+    <button class="action" type="button" data-sheet-close><span>Close</span></button>
+  </div>
+  <form class="wrap sheet-body" id="capture-form" novalidate>
+    <div class="sheet-form">
+      <fieldset class="chips" id="type-chips"><legend class="label">What is it</legend></fieldset>
+      <div class="field"><label class="label" for="f-title">Title</label><input id="f-title" name="title" autocomplete="off" placeholder="A name for it" required></div>
+      <div class="field"><label class="label" for="f-body">Note</label><textarea id="f-body" name="body" rows="3" placeholder="What is it, and why does it stay with you?"></textarea></div>
+      <div class="field" data-for="url"><label class="label" for="f-url">Link</label><input id="f-url" name="url" type="url" placeholder="https://"></div>
+      <fieldset class="chips" id="res-chips"><legend class="label">It</legend></fieldset>
+      <div class="two">
+        <div class="field"><label class="label" for="f-date">Entered my life</label><input id="f-date" name="date" type="date"></div>
+        <div class="field"><label class="label" for="f-tags">Tags</label><input id="f-tags" name="tags" autocomplete="off" placeholder="sea, repetition"></div>
       </div>
-      <label>Tags <span class="hint">comma separated</span><input name="tags" autocomplete="off"></label>
-      <div class="dialog-actions">
-        <button type="button" class="ghost" id="capture-cancel">Cancel</button>
-        <button type="submit" class="primary">Save</button>
+      <div class="sheet-actions">
+        <button class="action action--signal" type="submit"><span class="dot" aria-hidden="true"></span><span>Save entry</span></button>
+        <span class="label">⌘ ↵</span>
       </div>
-    </form>
-  </dialog>
+    </div>
+    <label class="drop" id="drop">
+      <input type="file" name="media" id="f-media" hidden>
+      <span class="drop-empty"><span class="label">Image or file</span><span class="drop-big">Drop, paste<br>or choose</span></span>
+      <span class="drop-preview" id="drop-preview"></span>
+    </label>
+  </form>
+</div>
 
-  <div id="dropzone" class="dropzone">Drop to add to the archive</div>
+<div class="dropzone" id="dropzone"><span class="label"><span class="dot"></span>Release to receive</span></div>
+<div class="toast label" id="toast" role="status"></div>
+<div class="preview" id="preview"></div>
+<div class="preview-dot" id="preview-dot"></div>
 
-  <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

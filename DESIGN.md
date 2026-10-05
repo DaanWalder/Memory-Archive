@@ -73,7 +73,8 @@ Ideas are seeds that grow, need tending, or go dormant.
 *Could grow into:* item "states" (seed → sprouting → evergreen) that show which inspirations
 are still alive in my work and which have been composted.
 
-These metaphors can be combined. The prototype already mixes four of them as lenses on one pool.
+These metaphors can be combined. The prototype already mixes four of them as lenses on one pool
+(Stream became the **Index** lens in the second version).
 
 ## 4. Data model (as in the prototype)
 
@@ -121,7 +122,24 @@ Structure only helps if the archive is used regularly. Possible rituals:
 5. What is the smallest unit: a single image, or a whole moment (photo + feeling + place)?
 6. Where do I capture most: phone, laptop, sketchbook? (Scanning analogue material matters for an artist.)
 
-## 7. Technical paths forward
+## 7. Visual system
+
+The archive borrows the language of daanwalder.com so it feels like part of the same practice:
+
+- **Paper and ink, one signal.** Almost everything is black on warm paper. Signal Blue marks
+  what is alive: the hovered row, the active thread, the "Receiving" pulse, things that *inspire*.
+  Signal Red is used only for what *triggers*. *Informs* is an open ring.
+- **Type does the work.** Large, tight Familjen Grotesk for titles and entries; IBM Plex Mono in
+  uppercase for every label, date and count. No cards, shadows or rounded boxes; hairlines and
+  ink rules separate things.
+- **Each lens has its own material.** Index is a quiet typographic list (like the portfolio
+  index, with the floating preview). Wall is a grid of plates where my own work takes double width.
+  Constellation is a night field of blue and white points, like the Synthetic Memories graph.
+  Lineage is a family tree whose threads light up in blue back to the root.
+- **Placeholders are generative.** Example images are drawn as line fields rather than fake
+  photos, so it is always clear what is real.
+
+## 8. Technical paths forward
 
 The prototype is a single HTML page with no build step and no server. Data stays in the browser
 (localStorage, about 5 MB, so not enough for many photos). Use **Export** for backups.
