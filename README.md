@@ -42,12 +42,31 @@ lists, checklists, quotes, links, code, tables and images (pasted or dropped ima
 with the entry). Type `[[` to link another entry; pick a title that doesn't exist yet to create a
 link to a new note. Renaming an entry updates the links that point to it.
 
-## Quick capture and keys
+## Quick capture
 
-- Paste a link, image or text anywhere to start a new entry, or drop files on the page.
-- `N` new entry (then `N` note, `F` find, `W` work) · `/` search · `1` `2` `3` list / grid / graph
-- On an entry: `←` `→` previous / next · `E` edit
-- In the editor: `⌘/Ctrl S` save · `⌘/Ctrl B` `I` `K` bold, italic, link · `Esc` cancel
+- **Upload**: the Upload button (or `U`) adds images and files straight into the archive.
+- **Paste anywhere**: a link becomes a **Source**, text becomes a **Thought**, an image becomes an **Image**.
+- **Drop** files anywhere on the page.
+
+New entries open in the side view right away, so you can name them, add a line about why they
+matter, put them in a collection or mark them as formative. Captures made on a collection page
+land in that collection.
+
+## Opening, editing and deleting
+
+- Entries open in a **side view** next to the list (`←` `→` to browse, `Esc` to close). Use
+  **Open page** for the full page with Lineage, or **Edit** for the Markdown editor.
+- Delete an entry with the `×` on its row or tile, from its side view, page or editor.
+  Collections have a `×` in the sidebar and on their card. People can be renamed or removed from
+  their page. Connections have a `×` too.
+- **Select** in the top bar lets you pick several entries to delete, add to a collection or mark as
+  formative at once.
+- Every delete asks first and can be undone from the message that follows.
+
+## Keys
+
+`N` new entry (then `N` note, `F` find, `W` work) · `U` upload · `/` search · `1` `2` `3` list / grid / graph ·
+`←` `→` previous / next entry · `E` edit · `Esc` close · in the editor `⌘/Ctrl S` save, `⌘/Ctrl B` `I` `K`
 
 ## Look and feel
 
@@ -57,8 +76,9 @@ hairline rules on a 12 column grid and `[ BRACKETED ]` actions.
 
 ## Storage and files
 
-Data is stored in this browser (IndexedDB). Use **Export** in the sidebar for a JSON backup and
-**Import** to restore it.
+Data is stored in this browser (IndexedDB), so each browser and device has its own archive. Use
+**Export** in the sidebar for a JSON backup and **Import** to restore it. **Delete everything** empties
+the archive (with undo).
 
 - `fonts/`: Familjen Grotesk and IBM Plex Mono (SIL Open Font License)
 - `vendor/`: [marked](https://github.com/markedjs/marked) (MIT) for Markdown and

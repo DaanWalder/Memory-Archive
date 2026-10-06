@@ -20,12 +20,16 @@
     </div>
 
     <div class="side-new">
-      <button class="new-btn" type="button" id="new-btn" aria-haspopup="true" aria-expanded="false"><span class="dot" aria-hidden="true"></span>New entry<kbd>N</kbd></button>
-      <div class="new-menu" id="new-menu" hidden>
-        <a href="#/new/note"><span class="g">¶</span><span><b>Note</b><small>Your own writing, in Markdown</small></span></a>
-        <a href="#/new/find"><span class="g">↘</span><span><b>Find</b><small>An image, link, quote or file</small></span></a>
-        <a href="#/new/work"><span class="g">◆</span><span><b>Work</b><small>A piece you made</small></span></a>
+      <div class="new-row">
+        <button class="new-btn" type="button" id="new-btn" aria-haspopup="true" aria-expanded="false"><span class="dot" aria-hidden="true"></span>New<kbd>N</kbd></button>
+        <button class="up-btn" type="button" data-upload title="Upload images or files (U)"><span aria-hidden="true">↑</span>Upload<kbd>U</kbd></button>
       </div>
+      <div class="new-menu" id="new-menu" hidden>
+        <a href="#/new/note"><span class="g">¶</span><span><b>Note</b><small>Your own writing, in Markdown</small></span><kbd>N</kbd></a>
+        <a href="#/new/find"><span class="g">↘</span><span><b>Find</b><small>An image, source, quote or file</small></span><kbd>F</kbd></a>
+        <a href="#/new/work"><span class="g">◆</span><span><b>Work</b><small>A piece you made</small></span><kbd>W</kbd></a>
+      </div>
+      <p class="side-hint label">Or paste a link, text or image anywhere</p>
     </div>
 
     <label class="side-search"><span class="visually-hidden">Search</span><input id="search" type="search" placeholder="Search" autocomplete="off"><kbd>/</kbd></label>
@@ -38,6 +42,7 @@
         <button class="label link-quiet" id="export">Export</button>
         <label class="label link-quiet">Import<input id="import" type="file" accept="application/json" hidden></label>
         <button class="label link-quiet" id="clear-examples">Remove examples</button>
+        <button class="label link-quiet link-danger" id="reset">Delete everything</button>
       </div>
     </div>
   </aside>
@@ -50,10 +55,18 @@
       <div class="bar-tools" id="bar-tools"></div>
     </header>
     <main id="main" class="main" tabindex="-1"></main>
+    <div class="selbar" id="selbar" hidden></div>
   </div>
 </div>
 
-<div class="dropzone" id="dropzone"><span class="label"><span class="dot"></span>Release to add as a find</span></div>
+<!-- Entry side view -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="panel" aria-label="Entry" inert></aside>
+
+<dialog class="ask" id="ask"></dialog>
+<input type="file" id="upload-input" multiple hidden>
+
+<div class="dropzone" id="dropzone"><span class="label"><span class="dot"></span>Release to add to the archive</span></div>
 <div class="toast label" id="toast" role="status"></div>
 <div class="preview" id="preview"></div>
 <div class="preview-dot" id="preview-dot"></div>
